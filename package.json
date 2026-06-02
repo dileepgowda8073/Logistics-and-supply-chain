@@ -1,0 +1,45 @@
+{
+  "name": "supply-watch-ai",
+  "version": "1.0.0",
+  "description": "SupplyWatch AI — Real-time supply chain disruption prediction & replan recommendation platform",
+  "private": true,
+  "scripts": {
+    "dev:all": "concurrently --kill-others --prefix '[{name}]' --names 'backend,ml,frontend' --prefix-colors 'cyan,magenta,yellow' \"npm run dev --prefix backend\" \"npm run dev --prefix ml-service\" \"npm run dev --prefix frontend\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:ml": "npm run dev --prefix ml-service",
+    "install:all": "npm install && npm install --prefix backend && npm install --prefix frontend",
+    "build:all": "npm run build --prefix backend && npm run build --prefix frontend",
+    "docker:up": "docker-compose up --build",
+    "docker:up:detach": "docker-compose up --build -d",
+    "docker:down": "docker-compose down",
+    "docker:down:volumes": "docker-compose down -v",
+    "docker:logs": "docker-compose logs -f",
+    "docker:ps": "docker-compose ps",
+    "db:migrate": "docker-compose exec postgres psql -U sw_user -d supplywatch -f /docker-entrypoint-initdb.d/01_schema.sql",
+    "db:seed": "docker-compose exec postgres psql -U sw_user -d supplywatch -f /docker-entrypoint-initdb.d/02_seed.sql",
+    "db:reset": "docker-compose down -v && docker-compose up -d postgres",
+    "lint": "npm run lint --prefix backend && npm run lint --prefix frontend",
+    "test": "npm run test --prefix backend && npm run test --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/supply-watch-ai.git"
+  },
+  "keywords": [
+    "supply-chain",
+    "ai",
+    "machine-learning",
+    "logistics",
+    "real-time",
+    "prediction"
+  ],
+  "license": "MIT"
+}
