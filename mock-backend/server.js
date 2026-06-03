@@ -311,6 +311,8 @@ setInterval(() => {
     });
 }, 8000);
 
-server.listen(3001, () => {
-    console.log('✅ Mock Backend running on http://localhost:3001');
+const PORT = process.env.PORT || 3001;
+
+server.listen(PORT, () => {
+    console.log(`✅ Mock Backend running on port ${PORT}`);
 });
