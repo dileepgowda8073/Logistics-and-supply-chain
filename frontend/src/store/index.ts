@@ -149,7 +149,15 @@ export const useStore = create<AppState>((set) => ({
     localStorage.removeItem('sw_token');
     localStorage.setItem('sw_token', token);
     localStorage.setItem('sw_user', JSON.stringify(user));
-    set({ user: { ...user }, token });
+    set({
+  user: {
+    id: user?.id || "",
+    email: user?.email || "",
+    role: user?.role || "",
+    name: user?.name || "",
+  },
+  token,
+});
   },
   logout: () => {
     localStorage.removeItem('sw_token');
